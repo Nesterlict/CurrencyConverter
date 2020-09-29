@@ -1,12 +1,11 @@
--- POSTGRESQL
-
 CREATE TABLE account_info (
 	login VARCHAR(50) PRIMARY KEY,
 	email VARCHAR(50) NOT NULL,
 	password VARCHAR(50) NOT NULL
 );
 
-INSERT INTO account_info VALUES ('guest','guest','guest@gmail.com');
+INSERT INTO account_info VALUES ('guest','guest','guest@gmail.com'), ('admin','admin','admin@gmail.com');
+
 
 CREATE TABLE log_files (
 	operation_id int PRIMARY KEY,

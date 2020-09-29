@@ -71,7 +71,7 @@ public class Controller {
     }
 
     public static double cutDouble(double res) {
-        return ((double)((int)(res *100.0)))/100.0;
+        return ((double)((int)(res *10000.0)))/10000.0;
     }
 
 }

@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ParseFromURL {
@@ -60,10 +61,17 @@ public class ParseFromURL {
             value.put(names.get(i), Controller.cutDouble(values.get(i)/valuesR.get(i)));
         }
         value.put("RUB",1.0);
+
+        value.entrySet().forEach(entry->{
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        });
+
         return value;
     }
 
-    public String getAll()  {
+    
+
+        public String getAll()  {
         StringBuilder sb = new StringBuilder();
         try {
             for(Scanner sc = new Scanner(new URL(url).openStream()); sc.hasNext(); )

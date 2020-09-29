@@ -11,13 +11,15 @@ import com.kryak.stages.MainStage;
 public class DataBaseController {
 
     public int id = getID();
-    private final String url = "jdbc:postgresql://localhost:5432/Log";
-    private final String user = "postgres";
-    private final String password = "postgres";
+    private final String url = "jdbc:mysql://localhost:3306/currencyconverter?serverTimezone=UTC";
+    private final String user = "root";
+    private final String password = "mysql";
+
+
 
     public Connection connect() {
         try {
-            Class.forName("org.postgresql.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             System.out.println("PostgreSQL JDBC Driver is not found. Include it in your library path ");
             e.printStackTrace();
@@ -54,12 +56,12 @@ public class DataBaseController {
     }
 
     public int getID() {
-        String sql = "SELECT MAX(operation_id) FROM log_files";
+        String sql = "select max(operation_id) from log_files";
         try (Connection connection = connect();
              Statement statement = connection.createStatement();
              ResultSet set = statement.executeQuery(sql)) {
             while (set.next()) {
-                id = set.getInt("max") + 1;
+                id = set.getInt("max(operation_id)") + 1;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -104,9 +106,8 @@ public class DataBaseController {
                     MainStage.auth.setText(login);
                     System.out.println("you log in as " + login);
                 }
-                passwords.close();
             } else {
-
+                System.out.println("Incorrect username or password.");
             }
         } catch (SQLException e) {
             e.printStackTrace();

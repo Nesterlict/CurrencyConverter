@@ -40,6 +40,7 @@ public class MainStage extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+
         scrollingMouse(insert);
         DataBaseController dataBaseController = new DataBaseController();
         dataBaseController.getID();
